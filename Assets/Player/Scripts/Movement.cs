@@ -14,6 +14,9 @@ public class Movement : MonoBehaviour
     private bool can_change_direction;
     private CharacterController characterController;
 
+    float vertical = 0;
+    float horizontal = 0;
+
 
     void Start()
     {
@@ -22,30 +25,24 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        vertical = Input.GetAxis("Vertical");
+        horizontal = Input.GetAxis("Horizontal");
         AbsoluteMovePlayer(speedMovement);
-        AbsoluteRotatePlayerTest();
     }
 
     private void AbsoluteMovePlayer(float speed){
-        moveDirection = Vector3.forward * Input.GetAxis("Vertical") * speed;
-        moveDirection += Vector3.right * Input.GetAxis("Horizontal") * speed;
-        characterController.Move(moveDirection*Time.deltaTime);
+        float vertical = Input.GetAxisRaw("Vertical");
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        moveDirection = new Vector3(horizontal, 0, vertical).normalized;
+
+        if (moveDirection.magnitude >= 0.1f){
+            RotatePlayer();
+            characterController.Move(moveDirection*speed*Time.deltaTime);
+        }
     }
 
-    private void AbsoluteRotatePlayerTest(){
-        if (Input.GetAxis("Vertical") > 0){
-            rotateDirection = Quaternion.Euler(0, 0, 0);
-        }
-        else if (Input.GetAxis("Vertical") < 0){
-            rotateDirection = Quaternion.Euler(0, 180, 0);
-        }
-        if (Input.GetAxis("Horizontal") > 0){
-            rotateDirection = Quaternion.Euler(0, 90, 0);
-        }
-        else if (Input.GetAxis("Horizontal") < 0){
-            rotateDirection = Quaternion.Euler(0, -90, 0);
-        }
-
-        transform.localRotation = Quaternion.Lerp(transform.localRotation, rotateDirection, smoothRotate * Time.deltaTime);
+    private void RotatePlayer(){
+        float rotationAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotationAngle, 0), smoothRotate*Time.deltaTime);
     }
 }
