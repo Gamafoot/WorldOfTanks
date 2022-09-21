@@ -36,10 +36,10 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Player\Camera\Scripts\CameraMovement.cs" />
-     <Compile Include="Assets\Player\Scripts\Movement.cs" />
      <Compile Include="Assets\Player\Scripts\Shooting.cs" />
      <Compile Include="Assets\Gun\Bullet\Scripts\BulletBehavior.cs" />
+     <Compile Include="Assets\Player\Camera\Scripts\CameraMovement.cs" />
+     <Compile Include="Assets\Player\Scripts\Movement.cs" />
      <Compile Include="Assets\Player\Scripts\Status.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:/UnityEngine/2020.3.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
