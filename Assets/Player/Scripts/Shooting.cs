@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shooting : MonoBehaviour
@@ -18,22 +17,26 @@ public class Shooting : MonoBehaviour
     [Tooltip("Префаб снаряда")]
     [SerializeField] private GameObject bullet_prefub;
 
-    private void Update(){
-        if (Input.GetKeyDown(KeyCode.Mouse0)){
-            if (reloading){
-                StartCoroutine(Shoot_CoolDown(timeReload));
-            }
-        }
+    public void Shoot(){
+        // При нажатии на кнопку выстрела будет вызываться метод shoot
+
+        StartCoroutine(Shoot_CoolDown(timeReload));
     }
 
     private IEnumerator Shoot_CoolDown(float timeReload){
-        reloading = false;
-        Shoot();
-        yield return new WaitForSeconds(timeReload);
-        reloading = true;
+        // Карутина с проверкой на cooldown (задержка вытстрела)
+    
+        if (reloading){
+            reloading = false;
+            CreateBullet();
+            yield return new WaitForSeconds(timeReload);
+            reloading = true;
+        }
     }
 
-    private void Shoot(){
-        GameObject bullet = Instantiate(bullet_prefub, shootPosition.position, shootPosition.rotation*Quaternion.Euler(90, 0, 0));
+    private void CreateBullet(){
+        // Создаёт пулю
+
+        Instantiate(bullet_prefub, shootPosition.position, shootPosition.rotation*Quaternion.Euler(90, 0, 0));
     }
 }

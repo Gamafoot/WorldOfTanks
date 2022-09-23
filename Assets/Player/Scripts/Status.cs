@@ -4,37 +4,41 @@ using UnityEngine.UI;
 public class Status : MonoBehaviour
 {
     [Header("Status settings")]
-    [Tooltip("Текущее кол-во здоровья игрока")]
-    [SerializeField] private int current_health;
 
-    [Range(0, 100)]
+    [Tooltip("Текущее кол-во здоровья игрока")]
+    [SerializeField] private float current_health;
+
     [Tooltip("Максимальное кол-во здоровья игрока")]
-    [SerializeField] private int max_heath;
+    [SerializeField] private float max_heath;
 
     [Tooltip("Текст для отображения хп")]
-    [SerializeField] private Text health_text;
+    [SerializeField] private Image health_img;
 
-    void Start()
+    private void Start()
     {
         current_health = max_heath;
     }
 
     private void Update(){
-        // Проверка на кол-во хп, а потом смэрть
+        UpdateHealth();
     }
 
-    public int GetPlayerHealth(){
+    public float GetHealthPlayer(){
+        // Просто возвращает кол-во хп
         return current_health;
     }
 
-    public void TakeDamage(int damage){
-        current_health -= damage;
-        current_health = Mathf.Clamp(current_health, 0, max_heath);
-        // UpdateHealth();
+    private void UpdateHealth(){
+        // Обновляет состояние здоровье для UI
+
+        health_img.fillAmount = current_health / max_heath;
     }
 
-    private void UpdateHealth(){
-        health_text.text = current_health.ToString();
+    public void TakeDamage(float damage){
+        // Метод для принятия домага
+
+        current_health -= damage;
+        current_health = Mathf.Clamp(current_health, 0, max_heath);
     }
 
     private void Death(){
