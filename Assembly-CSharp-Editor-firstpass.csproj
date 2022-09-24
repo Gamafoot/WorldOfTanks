@@ -268,14 +268,26 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
         <HintPath>D:/UnityEngine/2020.3.13f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.CecilX.Rocks">
+        <HintPath>D:/UnityProject/WorldOfTanks/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.CecilX.Pdb">
+        <HintPath>D:/UnityProject/WorldOfTanks/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Pdb.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
         <HintPath>D:/UnityProject/WorldOfTanks/Library/PackageCache/com.unity.collab-proxy@1.5.7/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.CecilX">
+        <HintPath>D:/UnityProject/WorldOfTanks/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.dll</HintPath>
     </Reference>
     <Reference Include="log4netPlastic">
         <HintPath>D:/UnityProject/WorldOfTanks/Library/PackageCache/com.unity.collab-proxy@1.5.7/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
         <HintPath>D:/UnityProject/WorldOfTanks/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.CecilX.Mdb">
+        <HintPath>D:/UnityProject/WorldOfTanks/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Mdb.dll</HintPath>
     </Reference>
     <Reference Include="unityplastic">
         <HintPath>D:/UnityProject/WorldOfTanks/Library/PackageCache/com.unity.collab-proxy@1.5.7/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
@@ -641,13 +653,17 @@
       <Project>{c65aaf4c-468a-0966-d668-0006551a445d}</Project>
       <Name>UnityEditor.TestRunner</Name>
     </ProjectReference>
+    <ProjectReference Include="Mirror.csproj">
+      <Project>{f09a65e3-d0e5-78e2-0fba-1d2e1f230e8b}</Project>
+      <Name>Mirror</Name>
+    </ProjectReference>
+    <ProjectReference Include="kcp2k.csproj">
+      <Project>{d7a22cfd-2d5d-fe82-3ab8-ecb2601ae330}</Project>
+      <Name>kcp2k</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.VSCode.Editor.csproj">
       <Project>{fb043433-20e1-f2a7-df58-0168ded1dc4c}</Project>
       <Name>Unity.VSCode.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.ProBuilder.AssetIdRemapUtility.csproj">
-      <Project>{55db312a-5bc9-6a67-35b8-45c6652f03ec}</Project>
-      <Name>Unity.ProBuilder.AssetIdRemapUtility</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
       <Project>{0fdec856-3fa7-c464-921d-013ce2b5df56}</Project>
@@ -661,9 +677,9 @@
       <Project>{57de1239-3d12-3beb-ee0a-4ca981a4e9e3}</Project>
       <Name>Unity.ProBuilder.AddOns.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Timeline.Editor.csproj">
-      <Project>{05e2053c-6fd2-4889-d5da-4de646fbda5c}</Project>
-      <Name>Unity.Timeline.Editor</Name>
+    <ProjectReference Include="Mirror.Examples.csproj">
+      <Project>{25ebf198-049a-119d-5fb9-e1d01d4e3971}</Project>
+      <Name>Mirror.Examples</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Timeline.csproj">
       <Project>{c3ad1679-7ab3-6430-ce4e-1c829acc9529}</Project>
@@ -693,13 +709,49 @@
       <Project>{05c7d562-b7d0-fdef-8b81-2692a466a071}</Project>
       <Name>Unity.Rider.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.PlasticSCM.Editor.csproj">
+      <Project>{7d773763-3bea-276a-3732-5eeb27965204}</Project>
+      <Name>Unity.PlasticSCM.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{34c37431-6fa2-7bc2-77a5-c4128533b5a9}</Project>
       <Name>UnityEngine.UI</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.PlasticSCM.Editor.csproj">
-      <Project>{7d773763-3bea-276a-3732-5eeb27965204}</Project>
-      <Name>Unity.PlasticSCM.Editor</Name>
+    <ProjectReference Include="Unity.ProBuilder.AssetIdRemapUtility.csproj">
+      <Project>{55db312a-5bc9-6a67-35b8-45c6652f03ec}</Project>
+      <Name>Unity.ProBuilder.AssetIdRemapUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="Mirror.Editor.csproj">
+      <Project>{61a38583-afb7-da49-a105-7e50cd47a09f}</Project>
+      <Name>Mirror.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Timeline.Editor.csproj">
+      <Project>{05e2053c-6fd2-4889-d5da-4de646fbda5c}</Project>
+      <Name>Unity.Timeline.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Mirror.CompilerSymbols.csproj">
+      <Project>{51bac0dc-957c-ad04-f04b-d8109e7cf347}</Project>
+      <Name>Mirror.CompilerSymbols</Name>
+    </ProjectReference>
+    <ProjectReference Include="Mirror.Authenticators.csproj">
+      <Project>{a3729f61-3080-13bf-99b0-e01813dbf378}</Project>
+      <Name>Mirror.Authenticators</Name>
+    </ProjectReference>
+    <ProjectReference Include="Telepathy.csproj">
+      <Project>{771136ea-3c93-ee49-1b75-df049ce1be52}</Project>
+      <Name>Telepathy</Name>
+    </ProjectReference>
+    <ProjectReference Include="where-allocations.csproj">
+      <Project>{f68c0189-b83e-047e-d10a-9ce42c96dfc3}</Project>
+      <Name>where-allocations</Name>
+    </ProjectReference>
+    <ProjectReference Include="SimpleWebTransport.csproj">
+      <Project>{f11073b0-259d-4a0e-bb5e-60c4b8cb00b2}</Project>
+      <Name>SimpleWebTransport</Name>
+    </ProjectReference>
+    <ProjectReference Include="Mirror.Components.csproj">
+      <Project>{b516f9d1-27d0-b0b0-1e23-27729b5b3eae}</Project>
+      <Name>Mirror.Components</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
