@@ -8,18 +8,31 @@ public class Spawner : MonoBehaviour
 {
     public static Action onSpawned;
 
-    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject prefubPlayer;
     [SerializeField] private Spawn[] spawns;
+    [SerializeField] private float coolDown;
+
     private void Start()
     {
-        SpawnPlayer();
+        StartCoroutine(SpawnPlayer());
     }
 
-    private void SpawnPlayer()
+    private IEnumerator SpawnPlayer()
     {
-        int number_spawn = UnityEngine.Random.Range(0, spawns.Length - 1);
-        PhotonNetwork.Instantiate(player.name, spawns[number_spawn].position(), Quaternion.identity);
+        yield return new WaitForSeconds(coolDown);
 
+        int number_spawn;
+
+        while (true)
+        {
+            number_spawn = UnityEngine.Random.Range(0, spawns.Length - 1);
+
+            if (spawns[number_spawn].isSpawnFree)
+            {
+                break;
+            }
+        }
+        PhotonNetwork.Instantiate(prefubPlayer.name, spawns[number_spawn].position(), Quaternion.identity);
         onSpawned?.Invoke();
     }
 

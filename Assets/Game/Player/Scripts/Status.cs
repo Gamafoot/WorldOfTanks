@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class Status : MonoBehaviour
+public class Status : MonoBehaviourPun, IPunObservable
 {
     [Header("Status settings")]
 
@@ -16,10 +17,17 @@ public class Status : MonoBehaviour
     private void Start()
     {
         current_health = max_heath;
-        healthImage = FindObjectOfType<PlayerSetup>().healthImage;
+
+        if (photonView.IsMine)
+        {
+            healthImage = FindObjectOfType<PlayerSetup>().healthImage;
+        }
     }
 
     private void Update(){
+        if (!photonView.IsMine)
+            return;
+
         UpdateHealth();
     }
 
@@ -34,14 +42,30 @@ public class Status : MonoBehaviour
         healthImage.fillAmount = current_health / max_heath;
     }
 
-    public void TakeDamage(float damage){
+    [PunRPC]
+    public void RPC_TakeDamage(float damage){
         // Метод для принятия домага
+        if (photonView.IsMine)
+        {
+            current_health -= damage;
+            current_health = Mathf.Clamp(current_health, 0, max_heath);
+        }
 
-        current_health -= damage;
-        current_health = Mathf.Clamp(current_health, 0, max_heath);
     }
 
     private void Death(){
         // Тут как-то что-то надо написать
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(current_health);
+        }
+        else
+        {
+            current_health = (float)stream.ReceiveNext();
+        }
     }
 }

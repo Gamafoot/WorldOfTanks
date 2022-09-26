@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 8939054253896692253}
   - component: {fileID: 8939054253896692254}
   - component: {fileID: 8939054253896692255}
-  - component: {fileID: 8939054253896692240}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -839,20 +838,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8939054253896692242}
   m_Mesh: {fileID: 0}
---- !u!64 &8939054253896692240
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8939054253896692242}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &8939054254186398395
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,8 +850,7 @@ GameObject:
   - component: {fileID: 8939054254186398374}
   - component: {fileID: 8939054254186398375}
   - component: {fileID: 8939054254186398392}
-  - component: {fileID: 8939054254186398393}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1692,20 +1676,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8939054254186398395}
   m_Mesh: {fileID: 0}
---- !u!64 &8939054254186398393
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8939054254186398395}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &8939054254924597635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1722,7 +1692,8 @@ GameObject:
   - component: {fileID: 8939054254924597643}
   - component: {fileID: 3287601831196861918}
   - component: {fileID: 1328334703634722922}
-  m_Layer: 0
+  - component: {fileID: 7319222620003435387}
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1860,7 +1831,9 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 8939054254924597643}
+  - {fileID: 7319222620003435387}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1880,6 +1853,39 @@ MonoBehaviour:
   reloading: 1
   shootPosition: {fileID: 8939054255400599815}
   bullet_prefub: {fileID: 4836677380203083483, guid: 0d1b62e342011844fbb6dc92e3c42a07, type: 3}
+--- !u!114 &7319222620003435387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8939054254924597635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 2
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 1
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
 --- !u!1 &8939054254976433958
 GameObject:
   m_ObjectHideFlags: 0
@@ -1891,8 +1897,7 @@ GameObject:
   - component: {fileID: 8939054254976433957}
   - component: {fileID: 8939054254976433954}
   - component: {fileID: 8939054254976433955}
-  - component: {fileID: 8939054254976433956}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1963,19 +1968,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8939054254976433956
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8939054254976433958}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8939054255400599832
 GameObject:
   m_ObjectHideFlags: 0
@@ -1985,7 +1977,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8939054255400599815}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fire position
   m_TagString: Untagged
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}

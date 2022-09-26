@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 
 public class BulletBehavior : MonoBehaviour
@@ -8,7 +9,7 @@ public class BulletBehavior : MonoBehaviour
     [SerializeField] private float speed;
 
     [Tooltip("Урон от снаряда")]
-    [SerializeField] private int damage;
+    [SerializeField] private float damage;
 
     [Tooltip("Слой врагов по котрым будет проходить урон")]
     [SerializeField] private int numberEnemiesLayer;
@@ -16,11 +17,12 @@ public class BulletBehavior : MonoBehaviour
     [Tooltip("Время жизни снаряда (в секундах)")]
     [SerializeField] private float lifeTime;
 
-    private void Start(){
+
+    private void Start() {
         Invoke("DestroyBullet", lifeTime);
     }
 
-    private void DestroyBullet(){
+    private void DestroyBullet() {
         Destroy(transform.gameObject);
     }
 
@@ -29,9 +31,11 @@ public class BulletBehavior : MonoBehaviour
         transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter(Collision collision){
-        if (collision.transform.gameObject.layer == numberEnemiesLayer){
-            collision.transform.GetComponent<Status>().TakeDamage(damage);
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.transform.gameObject.tag == "Player")
+        {
+            collision.transform.GetComponent<Status>().RPC_TakeDamage(damage);
+            // collision.transform.GetComponent<PhotonView>().RPC("RPC_TakeDamage", RpcTarget.AllBuffered, damage);
         }
         Destroy(transform.gameObject);
     }

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviourPunCallbacks
 {
@@ -28,7 +29,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
     }
 
     public void JoinRoom(){
-        if(string.IsNullOrEmpty(joinInput.text)){
+        if(!string.IsNullOrEmpty(joinInput.text)){
             PhotonNetwork.JoinRoom(joinInput.text); 
         }
     }
@@ -46,5 +47,11 @@ public class MenuManager : MonoBehaviourPunCallbacks
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
         print(message);
+    }
+
+    public void Disconnect()
+    {
+        PhotonNetwork.Disconnect();
+        SceneManager.LoadScene("Menu");
     }
 }

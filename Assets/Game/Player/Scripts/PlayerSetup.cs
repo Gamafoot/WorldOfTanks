@@ -8,7 +8,7 @@ public class PlayerSetup : MonoBehaviour
 {
     public static Action<GameObject> onFoundPlayer;
 
-    [HideInInspector] public GameObject player;
+    public GameObject player;
     public FixedJoystick joystick;
     public Image healthImage;
 
@@ -24,7 +24,10 @@ public class PlayerSetup : MonoBehaviour
 
     private void FindPlayer()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        onFoundPlayer?.Invoke(player);
+        if (!player)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            onFoundPlayer?.Invoke(player);
+        }
     }
 }

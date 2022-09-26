@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class GunSettings : MonoBehaviour
 {
@@ -17,6 +18,13 @@ public class GunSettings : MonoBehaviour
 
     [Tooltip("Префаб снаряда")]
     [SerializeField] private GameObject bullet_prefub;
+
+    PhotonView photonView;
+
+    private void Start()
+    {
+        photonView = GetComponent<PhotonView>();
+    }
 
     public void Shoot()
     {
@@ -41,7 +49,12 @@ public class GunSettings : MonoBehaviour
     private void CreateBullet()
     {
         // Создаёт пулю
+        photonView.RPC("RPC_CreateBullet", RpcTarget.All);
+    }
 
+    [PunRPC]
+    private void RPC_CreateBullet()
+    {
         Instantiate(bullet_prefub, shootPosition.position, shootPosition.rotation * Quaternion.Euler(90, 0, 0));
     }
 }

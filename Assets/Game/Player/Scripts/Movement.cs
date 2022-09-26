@@ -1,4 +1,5 @@
 using UnityEngine;
+using Photon.Pun;
 
 public class Movement : MonoBehaviour
 {
@@ -18,19 +19,24 @@ public class Movement : MonoBehaviour
     private float vertical = 0;
     private float horizontal = 0;
 
+    PhotonView photonView;
+
 
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
         joystick = FindObjectOfType<PlayerSetup>().joystick;
+        photonView = GetComponent<PhotonView>();
     }
 
     void Update()
     {
         vertical = joystick.Vertical;
         horizontal = joystick.Horizontal;
-
-        AbsoluteMovePlayer(speedMovement);
+        if (photonView.IsMine)
+        {
+            AbsoluteMovePlayer(speedMovement);
+        }
     }
 
     private void AbsoluteMovePlayer(float speed){
