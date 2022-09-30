@@ -14,6 +14,8 @@ public class Movement : MonoBehaviour
 
     //Направление игрока
     private Vector3 moveDirection = Vector3.zero;
+    //Падание/Гравитация игрока
+    private Vector3 velocity;
 
     // Переменные для быстрого и удобного написания кода
     private float vertical = 0;
@@ -31,12 +33,13 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        if (!photonView.IsMine)
+            return;
+
         vertical = joystick.Vertical;
         horizontal = joystick.Horizontal;
-        if (photonView.IsMine)
-        {
-            AbsoluteMovePlayer(speedMovement);
-        }
+
+        AbsoluteMovePlayer(speedMovement);
     }
 
     private void AbsoluteMovePlayer(float speed){

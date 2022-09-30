@@ -34,8 +34,7 @@ public class BulletBehavior : MonoBehaviour
     private void OnCollisionEnter(Collision collision) {
         if (collision.transform.gameObject.tag == "Player")
         {
-            collision.transform.GetComponent<Status>().RPC_TakeDamage(damage);
-            // collision.transform.GetComponent<PhotonView>().RPC("RPC_TakeDamage", RpcTarget.AllBuffered, damage);
+            collision.transform.GetComponent<Status>().TakeDamage(damage);
         }
         Destroy(transform.gameObject);
     }

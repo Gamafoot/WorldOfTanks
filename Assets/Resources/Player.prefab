@@ -821,7 +821,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 2
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -1659,7 +1659,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 2
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -1687,13 +1687,12 @@ GameObject:
   - component: {fileID: 8939054254924597634}
   - component: {fileID: 8939054254924597646}
   - component: {fileID: 8939054254924597647}
-  - component: {fileID: 8939054254924597633}
   - component: {fileID: 8939054254924597645}
   - component: {fileID: 8939054254924597643}
   - component: {fileID: 3287601831196861918}
   - component: {fileID: 1328334703634722922}
   - component: {fileID: 7319222620003435387}
-  - component: {fileID: 7918830061005749285}
+  - component: {fileID: 5461350788996656667}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1709,7 +1708,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8939054254924597635}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.9751883, y: 2.47, z: 17.17238}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.33, y: 1.33, z: 1.33}
   m_Children:
   - {fileID: 8939054253896692241}
@@ -1767,24 +1766,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!143 &8939054254924597633
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8939054254924597635}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 1
-  m_Radius: 0.92
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8939054254924597645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1814,6 +1795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   current_health: 100
   max_heath: 100
+  respawnTime: 5
 --- !u!114 &3287601831196861918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1887,22 +1869,24 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!54 &7918830061005749285
-Rigidbody:
+--- !u!143 &5461350788996656667
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8939054254924597635}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 4
-  m_CollisionDetection: 0
+  m_Height: 2.08
+  m_Radius: 0.77
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.28, z: 0}
 --- !u!1 &8939054254976433958
 GameObject:
   m_ObjectHideFlags: 0

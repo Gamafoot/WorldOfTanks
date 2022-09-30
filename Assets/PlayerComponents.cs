@@ -11,11 +11,33 @@ public class PlayerComponents : MonoBehaviour
     [SerializeField] private FixedJoystick joystickRef;
     [SerializeField] private Image healthImageRef;
     [SerializeField] private Spawner spawnerRef;
+    [SerializeField] private GameObject playerUI;
 
     private void Start()
     {
         joystick = joystickRef;
         healthImage = healthImageRef;
         spawner = spawnerRef;
+    }
+
+    private void OnEnable()
+    {
+        Status.onPlayerRespawn += EnableHUD;
+        Status.onPlayerDead += DisableHUD;
+    }
+
+    private void OnDisable()
+    {
+        Status.onPlayerRespawn -= EnableHUD;
+        Status.onPlayerDead -= DisableHUD;
+    }
+
+    private void EnableHUD()
+    {
+        playerUI.SetActive(true);
+    }
+    private void DisableHUD()
+    {
+        playerUI.SetActive(false);
     }
 }

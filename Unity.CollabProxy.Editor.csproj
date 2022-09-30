@@ -796,13 +796,13 @@
       <Project>{8AD0B976-B7E6-D1A5-BF8B-4B0392009761}</Project>
       <Name>Unity.Settings.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{51D72B45-D296-421C-7A2B-2DCD3B6C31CA}</Project>
-      <Name>UnityEditor.UI</Name>
-    </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{3174C334-A26F-C27B-77A5-C4128533B5A9}</Project>
       <Name>UnityEngine.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{51D72B45-D296-421C-7A2B-2DCD3B6C31CA}</Project>
+      <Name>UnityEditor.UI</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.TestRunner.csproj">
       <Project>{9D1A7935-2D7E-B0A9-507A-B8BE83E2CFFE}</Project>

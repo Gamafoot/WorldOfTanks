@@ -72,10 +72,12 @@
     <Compile Include="Assets\Game\Player\Scripts\GunSettings.cs" />
     <Compile Include="Assets\Game\WorldScripts\Spawn.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\NamePickGui.cs" />
+    <Compile Include="Assets\Photon\Scripts\PhotonGameManager.cs" />
     <Compile Include="Assets\Game\Player\Bullet\BulletBehavior.cs" />
     <Compile Include="Assets\Game\Joystick Pack\Examples\JoystickSetterExample.cs" />
     <Compile Include="Assets\Game\WorldScripts\Spawner.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChannelSelector.cs" />
+    <Compile Include="Assets\PlayerComponents.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\IgnoreUiRaycastWhenInactive.cs" />
     <Compile Include="Assets\Photon\Scripts\Menu.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
@@ -88,8 +90,6 @@
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
     <Compile Include="Assets\Game\Player\Scripts\Movement.cs" />
     <Compile Include="Assets\Game\Player\Scripts\Status.cs" />
-    <Compile Include="Assets\PlayerComponents.cs" />
-    <Compile Include="Assets\Photon\Scripts\PhotonGameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
