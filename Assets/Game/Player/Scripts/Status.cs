@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using Photon.Pun;
 
 public class Status : MonoBehaviourPun, IPunObservable
@@ -14,29 +15,41 @@ public class Status : MonoBehaviourPun, IPunObservable
 
     private Image healthImage;
 
+    private bool isRespawning;
+
     private void Start()
     {
-        current_health = max_heath;
+        isRespawning = false;
+        if (!photonView.IsMine)
+            return;
 
-        if (photonView.IsMine)
-        {
-            healthImage = FindObjectOfType<PlayerSetup>().healthImage;
-        }
+        current_health = max_heath;
+        healthImage = PlayerComponents.healthImage;
     }
 
     private void Update(){
         if (!photonView.IsMine)
             return;
 
-        UpdateHealth();
+        UpdateHealthUI();
+        CheckDeath();
     }
 
     public float GetHealthPlayer(){
         // Просто возвращает кол-во хп
+
         return current_health;
     }
 
-    private void UpdateHealth(){
+    private void CheckDeath()
+    {
+        if (current_health == 0 && !isRespawning)
+        {
+            GetComponent<PhotonView>().RPC("RPC_Death", RpcTarget.AllBuffered);
+        }
+    }
+
+    private void UpdateHealthUI(){
         // Обновляет состояние здоровье для UI
 
         healthImage.fillAmount = current_health / max_heath;
@@ -45,16 +58,19 @@ public class Status : MonoBehaviourPun, IPunObservable
     [PunRPC]
     public void RPC_TakeDamage(float damage){
         // Метод для принятия домага
+
         if (photonView.IsMine)
         {
             current_health -= damage;
             current_health = Mathf.Clamp(current_health, 0, max_heath);
         }
-
     }
-
-    private void Death(){
-        // Тут как-то что-то надо написать
+    
+    [PunRPC]
+    private void RPC_Death(){
+        gameObject.SetActive(false);
+        PlayerComponents.spawner.RespawnPlayer(gameObject);
+        current_health = max_heath;
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

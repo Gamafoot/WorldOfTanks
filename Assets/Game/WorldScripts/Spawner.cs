@@ -2,38 +2,60 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-using System;
 
 public class Spawner : MonoBehaviour
 {
-    public static Action onSpawned;
-
     [SerializeField] private GameObject prefubPlayer;
     [SerializeField] private Spawn[] spawns;
-    [SerializeField] private float coolDown;
+    [SerializeField] private float spawnTime;
+    [SerializeField] private float respawnTime;
 
     private void Start()
     {
-        StartCoroutine(SpawnPlayer());
+        StartCoroutine(IESpawnPlayer());
     }
 
-    private IEnumerator SpawnPlayer()
+    public void RespawnPlayer(GameObject respawnPlayer)
     {
-        yield return new WaitForSeconds(coolDown);
+        StartCoroutine(IERepawnPlayer(respawnPlayer));
+    }
 
-        int number_spawn;
+    private int GetIndexFreeSpawn()
+    {
+        int spawnIndex;
 
         while (true)
         {
-            number_spawn = UnityEngine.Random.Range(0, spawns.Length - 1);
+            spawnIndex = Random.Range(0, spawns.Length - 1);
 
-            if (spawns[number_spawn].isSpawnFree)
+            if (spawns[spawnIndex].isSpawnFree)
             {
                 break;
             }
         }
-        PhotonNetwork.Instantiate(prefubPlayer.name, spawns[number_spawn].position(), Quaternion.identity);
-        onSpawned?.Invoke();
+
+        return spawnIndex;
     }
 
+    private IEnumerator IESpawnPlayer()
+    {
+        yield return new WaitForSeconds(spawnTime);
+
+        int spawnIndex = GetIndexFreeSpawn();
+
+        GameObject player = PhotonNetwork.Instantiate(prefubPlayer.name, spawns[spawnIndex].GetPosition(), Quaternion.identity);
+        PlayerComponents.player = player;
+    }
+
+    private IEnumerator IERepawnPlayer(GameObject respawnPlayer)
+    {
+        yield return new WaitForSeconds(respawnTime);
+
+        int spawnIndex = GetIndexFreeSpawn();
+
+        Vector3 spawnPosition = spawns[spawnIndex].GetPosition();
+
+        respawnPlayer.transform.position = new Vector3(spawnPosition.x, respawnPlayer.transform.position.y, spawnPosition.z);
+        respawnPlayer.SetActive(true);
+    }
 }

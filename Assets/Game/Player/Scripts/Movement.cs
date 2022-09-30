@@ -25,7 +25,7 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
-        joystick = FindObjectOfType<PlayerSetup>().joystick;
+        joystick = PlayerComponents.joystick;
         photonView = GetComponent<PhotonView>();
     }
 

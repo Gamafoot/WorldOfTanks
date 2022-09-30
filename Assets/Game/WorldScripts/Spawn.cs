@@ -13,7 +13,7 @@ public class Spawn : MonoBehaviour
         isSpawnFree = true;
     }
 
-    public Vector3 position()
+    public Vector3 GetPosition()
     {
         return transform.position;
     }

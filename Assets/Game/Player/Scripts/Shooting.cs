@@ -1,10 +1,12 @@
-public class Shooting : GetPlayerClass
+using UnityEngine;
+
+public class Shooting : MonoBehaviour
 {
     public void Shoot()
     {
-        if (player != null)
+        if (PlayerComponents.player != null)
         {
-            player.GetComponent<GunSettings>().Shoot();
+            PlayerComponents.player.GetComponent<GunSettings>().Shoot();
         }
     }
 }
